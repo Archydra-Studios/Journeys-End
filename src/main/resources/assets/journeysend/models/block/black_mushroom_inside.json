@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_single_face",
+  "textures": {
+    "texture": "journeysend:block/black_mushroom_inside"
+  }
+}

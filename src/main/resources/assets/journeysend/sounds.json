@@ -1,0 +1,22 @@
+{
+  "wet_step": {
+    "sounds": [
+      "journeysend:mud_step",
+      "journeysend:mud_step_alt",
+      "journeysend:mud_place"
+
+    ]
+  },
+  "wet_break": {
+    "sounds": [
+      "journeysend:mud_place"
+    ]
+  },
+  "wet_place": {
+    "sounds": [
+      "journeysend:mud_break",
+      "journeysend:mud_step",
+      "journeysend:mud_step_alt"
+    ]
+  }
+}

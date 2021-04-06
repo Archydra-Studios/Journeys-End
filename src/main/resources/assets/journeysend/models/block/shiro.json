@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "journeysend:block/shiro_top",
+    "bottom": "minecraft:block/deepslate_top",
+    "side": "journeysend:block/shiro_side"
+  }
+}

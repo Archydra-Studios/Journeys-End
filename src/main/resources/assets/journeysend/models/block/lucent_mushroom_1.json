@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "journeysend:block/lucent_mushroom_1"
+  }
+}

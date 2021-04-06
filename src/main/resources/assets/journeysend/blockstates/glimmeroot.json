@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "journeysend:block/glimmeroot"
+      },
+      {
+        "model": "journeysend:block/glimmeroot",
+        "y": 90
+      },
+      {
+        "model": "journeysend:block/glimmeroot",
+        "y": 180
+      },
+      {
+        "model": "journeysend:block/glimmeroot",
+        "y": 270
+      }
+    ]
+  }
+}

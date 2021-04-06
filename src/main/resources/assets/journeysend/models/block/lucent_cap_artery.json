@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "journeysend:block/lucent_cap_artery"
+  }
+}
