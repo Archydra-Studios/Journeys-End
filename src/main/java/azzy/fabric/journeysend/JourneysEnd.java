@@ -3,6 +3,7 @@ package azzy.fabric.journeysend;
 import azzy.fabric.incubus_core.datagen.Metadata;
 import azzy.fabric.journeysend.biome.JourneysEndBiomes;
 import azzy.fabric.journeysend.block.JourneysEndBlocks;
+import azzy.fabric.journeysend.carver.JourneysEndCarvers;
 import azzy.fabric.journeysend.feature.JourneysEndFeatures;
 import azzy.fabric.journeysend.item.JourneysEndItems;
 import net.fabricmc.api.ModInitializer;
@@ -28,6 +29,7 @@ public class JourneysEnd implements ModInitializer {
         JourneysEndBlocks.init();
         JourneysEndItems.init();
         JourneysEndFeatures.init();
+        JourneysEndCarvers.init();
         JourneysEndBiomes.init();
     }
 

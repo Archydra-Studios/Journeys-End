@@ -1,9 +1,11 @@
 package azzy.fabric.journeysend.biome;
 
+import azzy.fabric.journeysend.carver.JourneysEndCarvers;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
@@ -20,7 +22,9 @@ public class AshTroughBiome {
 
         generation.surfaceBuilder(ConfiguredSurfaceBuilders.BADLANDS);
         generation.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
-        DefaultBiomeFeatures.addLandCarvers(generation);
+        //DefaultBiomeFeatures.addLandCarvers(generation);
+
+        generation.carver(GenerationStep.Carver.AIR, JourneysEndCarvers.ASH_TROUGH_CARVER);
 
         DefaultBiomeFeatures.addBatsAndMonsters(spawns);
 
