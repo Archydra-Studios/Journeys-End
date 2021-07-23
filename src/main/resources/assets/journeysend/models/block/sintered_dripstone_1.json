@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "journeysend:block/sintered_dripstone_1"
+  }
+}

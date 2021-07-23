@@ -31,7 +31,7 @@ public class JourneysEndCarvers {
 
     public static final Carver<CarverConfig> TUBE_CAVE_CARVER = register("tube_cave_carver", new AshTroughCarver(class_6108.field_31491));
 
-    public static final ConfiguredCarver<?> ASH_TROUGH_CARVER = register("ash_trough_carver", TUBE_CAVE_CARVER.configure(new class_6108(0.2132334F, class_6124.method_35396(YOffset.aboveBottom(3), YOffset.fixed(-8)), UniformFloatProvider.create(0.1F, 0.9F), YOffset.aboveBottom(11), CarverDebugConfig.create(false, Blocks.CRIMSON_BUTTON.getDefaultState()), UniformFloatProvider.create(0.3F, 1.8F), UniformFloatProvider.create(0.5F, 1.8F), UniformFloatProvider.create(-1.0F, 0.0F))));
+    public static final ConfiguredCarver<?> ASH_TROUGH_CARVER = register("ash_trough_carver", TUBE_CAVE_CARVER.configure(new class_6108(0.2132334F, class_6124.method_35396(YOffset.aboveBottom(3), YOffset.fixed(-8)), UniformFloatProvider.create(0.1F, 0.9F), YOffset.aboveBottom(9), CarverDebugConfig.create(false, Blocks.CRIMSON_BUTTON.getDefaultState()), UniformFloatProvider.create(0.3F, 1.8F), UniformFloatProvider.create(0.5F, 1.8F), UniformFloatProvider.create(-1.0F, 0.0F))));
 
     public static void init() {
     }

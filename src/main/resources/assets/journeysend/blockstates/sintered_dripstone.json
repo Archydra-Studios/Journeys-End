@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "inverted=false": [
+      {
+        "model": "journeysend:block/sintered_dripstone_1"
+      },
+      {
+        "model": "journeysend:block/sintered_dripstone_2"
+      },
+      {
+        "model": "journeysend:block/sintered_dripstone_3"
+      }
+    ],
+    "inverted=true": [
+      {
+        "model": "journeysend:block/sintered_dripstone_1",
+        "x": 180
+      },
+      {
+        "model": "journeysend:block/sintered_dripstone_2",
+        "x": 180
+      },
+      {
+        "model": "journeysend:block/sintered_dripstone_3",
+        "x": 180
+      }
+    ]
+  }
+}

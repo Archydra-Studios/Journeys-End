@@ -32,12 +32,14 @@ public class JourneysEndFeatures {
     public static Feature<JourneyShroomFeatureConfig> CAMPANULATE_MUSHROOM_CONFIG;
     public static RegistryFeature<?, ?> BLACK_MUD_VEINS;
     public static RegistryFeature<?, ?> LUCENT_CAP, LUCENT_CAP_TINY, LUCENT_CAP_TREE, LUCENT_CAP_GIANT, LUCENT_VEGETATION, SHIMMERGRASS_PATCH, SHIMMERFERN_PATCH, GLIMMEROOT_PATCH, SHIRO_PATCH;
+    public static RegistryFeature<?, ?> DARK_ASH_FLOOR, ASH_VEGETATION;
 
     public static void init() {
         CAMPANULATE_MUSHROOM_CONFIG = register("campanulate_mushroom", new CampanulateMushroomFeature(JourneyShroomFeatureConfig.CODEC));
 
         BLACK_MUD_VEINS = register("black_mud_veins", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, JourneysEndBlocks.BLACK_MUD.getDefaultState(), 64)).range(Decorators.BOTTOM_TO_0).spreadHorizontally().repeat(14));
 
+        //Vibrant Veil
         LUCENT_CAP = register("lucent_cap", CAMPANULATE_MUSHROOM_CONFIG.configure(new JourneyShroomFeatureConfig(States.BLACK_MUSHROOM_STEM, UniformIntProvider.create(2, 5), UniformIntProvider.create(2, 5), 3, Collections.emptyList(), Arrays.asList(States.LUCENT_CAP, States.LUCENT_CAP_GLOWING, States.LUCENT_CAP_ARTERY), Arrays.asList(1F, 0.15F, 0.003F))).decorate(Decorator.CAVE_SURFACE.configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(Decorators.BOTTOM_TO_0).spreadHorizontally().repeat(2));
         LUCENT_CAP_TINY = register("lucent_cap_tiny", CAMPANULATE_MUSHROOM_CONFIG.configure(new JourneyShroomFeatureConfig(States.BLACK_MUSHROOM_STEM, UniformIntProvider.create(1, 4), UniformIntProvider.create(1, 2), 3, Collections.emptyList(), Arrays.asList(States.LUCENT_CAP, States.LUCENT_CAP_GLOWING, States.LUCENT_CAP_ARTERY), Arrays.asList(1F, 0.15F, 0.004F))).decorate(Decorator.CAVE_SURFACE.configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(Decorators.BOTTOM_TO_0).spreadHorizontally().applyChance(10).repeatRandomly(12));
         LUCENT_CAP_TREE = register("lucent_cap_tree", CAMPANULATE_MUSHROOM_CONFIG.configure(new JourneyShroomFeatureConfig(States.BLACK_MUSHROOM_STEM, UniformIntProvider.create(1, 4), UniformIntProvider.create(2, 4), 3, Collections.emptyList(), Arrays.asList(States.LUCENT_CAP, States.LUCENT_CAP_GLOWING, States.LUCENT_CAP_ARTERY), Arrays.asList(1F, 0.15F, 0.003F))).decorate(Decorator.CAVE_SURFACE.configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(Decorators.BOTTOM_TO_0));
@@ -48,6 +50,10 @@ public class JourneysEndFeatures {
         SHIMMERFERN_PATCH = register("shimmerfern_patch", Feature.RANDOM_PATCH.configure(new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(JourneysEndBlocks.SHIMMERFERN.getDefaultState()), SimpleBlockPlacer.INSTANCE).cannotProject().tries(30).build()).decorate(Decorator.CAVE_SURFACE.configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(ConfiguredFeatures.Decorators.BOTTOM_TO_60).spreadHorizontally().repeat(20));
         GLIMMEROOT_PATCH = register("glimmeroot_patch", Feature.RANDOM_PATCH.configure(new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(JourneysEndBlocks.GLIMMEROOT.getDefaultState()), SimpleBlockPlacer.INSTANCE).cannotProject().tries(12).build()).decorate(Decorator.CAVE_SURFACE.configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.CEILING, 12))).range(Decorators.BOTTOM_TO_0).spreadHorizontally().repeatRandomly(5));
         SHIRO_PATCH = register("shiro_patch", Feature.VEGETATION_PATCH.configure(new VegetationPatchFeatureConfig(BlockTags.LUSH_PLANTS_REPLACEABLE.getId(), new SimpleBlockStateProvider(JourneysEndBlocks.SHIRO.getDefaultState()), () -> LUCENT_VEGETATION.getFeature(), VerticalSurfaceType.FLOOR, UniformIntProvider.create(1, 1), 0.0F, 6, 0.65F, UniformIntProvider.create(0, 3), 0.3F)).decorate(Decorator.CAVE_SURFACE.configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(Decorators.BOTTOM_TO_0).spreadHorizontally().repeat(28));
+
+        //Cinder Pipes
+        ASH_VEGETATION = register("ash_vegetation", Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(new class_6005.class_6006<BlockState>().method_34975(Blocks.AIR.getDefaultState(), 1)))));
+        DARK_ASH_FLOOR = register("dark_ash_floor", Feature.VEGETATION_PATCH.configure(new VegetationPatchFeatureConfig(BlockTags.LUSH_PLANTS_REPLACEABLE.getId(), new SimpleBlockStateProvider(JourneysEndBlocks.DARK_ASH.getDefaultState()), () -> ASH_VEGETATION.getFeature(), VerticalSurfaceType.FLOOR, UniformIntProvider.create(2, 5), 0.3F, 9, 0.65F, UniformIntProvider.create(1, 4), 0.35F)).decorate(Decorator.CAVE_SURFACE.configure(new CaveSurfaceDecoratorConfig(VerticalSurfaceType.FLOOR, 12))).range(Decorators.BOTTOM_TO_0).spreadHorizontally().repeat(256));
     }
 
     private static <C extends FeatureConfig, F extends Feature<C>> F register(String name, F feature) {

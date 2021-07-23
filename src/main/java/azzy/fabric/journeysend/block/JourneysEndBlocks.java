@@ -18,6 +18,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -50,7 +51,13 @@ public class JourneysEndBlocks {
     public static final Block SHIMMERFERN = registerBlock("shimmerfern", new UndergroundFernBlock(FabricBlockSettings.copyOf(Blocks.GRASS).luminance(8).nonOpaque().noCollision()), genericSettings(Rarity.COMMON), false);
     public static final Block GLIMMEROOT = registerBlock("glimmeroot", new HangingFernBlock(FabricBlockSettings.copyOf(Blocks.GRASS).luminance(8).nonOpaque().noCollision()), genericSettings(Rarity.COMMON), false);
     public static final Block RED_MUD = registerCubeBlock("red_mud", new SoulSandBlock(FabricBlockSettings.copyOf(Blocks.DIRT).sounds(JourneysEndSounds.MUD).velocityMultiplier(0.55F).jumpVelocityMultiplier(0.8F).breakByTool(FabricToolTags.SHOVELS, 1).breakByHand(false).allowsSpawning((state, world, pos, type) -> true).blockVision((state, world, pos) -> true).strength(2F)), genericSettings(Rarity.COMMON), true);
-    public static final Block BLACK_MUD = registerCubeBlock("black_mud", new SandBlock(0x251b17, FabricBlockSettings.copyOf(Blocks.DIRT).velocityMultiplier(0.9F).sounds(JourneysEndSounds.MUD).strength(4.75F).breakByTool(FabricToolTags.SHOVELS, 2).breakByHand(false)), genericSettings(Rarity.COMMON), true);
+    public static final Block BLACK_MUD = registerCubeBlock("black_mud", new DynamicFallingBlock(0x251b17, true, true, false, 0f, 0f, null, FabricBlockSettings.copyOf(Blocks.DIRT).velocityMultiplier(0.9F).sounds(JourneysEndSounds.MUD).strength(4.75F).breakByTool(FabricToolTags.SHOVELS, 2).breakByHand(false)), genericSettings(Rarity.COMMON), true);
+
+    //Ash biomes
+    public static final Block DARK_ASH = registerBlock("dark_ash", new SandBlock(0x3e393f, FabricBlockSettings.copyOf(Blocks.SAND).breakByHand(false).breakByTool(FabricToolTags.SHOVELS, 2).strength(6F).sounds(BlockSoundGroup.SAND)), genericSettings(Rarity.COMMON));
+    public static final Block WHITE_ASH = registerBlock("white_ash", new SandBlock(0xcdcac3, FabricBlockSettings.copyOf(Blocks.SAND).breakByHand(false).breakByTool(FabricToolTags.SHOVELS, 3).strength(11.5F).sounds(BlockSoundGroup.SAND)), genericSettings(Rarity.COMMON));
+    public static final Block CINDER = registerCubeBlock("cinder", new DynamicFallingBlock(0xf4a222, true, true, false, 0.1F, 1f, () -> DamageSource.HOT_FLOOR, FabricBlockSettings.copyOf(DARK_ASH).luminance(3).postProcess((state, world, pos) -> true)), genericSettings(Rarity.COMMON), true);
+    public static final Block SINTERED_DRIPSTONE = registerBlock("sintered_dripstone", new SinteredDripstoneBlock(FabricBlockSettings.copyOf(DARK_ASH).nonOpaque()), genericSettings(Rarity.COMMON));
 
     public static void init() {
     }
@@ -58,6 +65,7 @@ public class JourneysEndBlocks {
     @Environment(EnvType.CLIENT)
     public static void clientInit() {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), LUCENT_MUSHROOM, SHIMMERGRASS, GLIMMEROOT, SHIMMERFERN);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), SINTERED_DRIPSTONE);
     }
 
     public static Block registerBlock(String name, Block item, Item.Settings settings, boolean genLoot) {

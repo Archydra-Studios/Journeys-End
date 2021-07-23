@@ -1,6 +1,7 @@
 package azzy.fabric.journeysend.biome;
 
 import azzy.fabric.journeysend.carver.JourneysEndCarvers;
+import azzy.fabric.journeysend.feature.JourneysEndFeatures;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
@@ -10,9 +11,9 @@ import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
 
-public class AshTroughBiome {
+public class CinderPipesBiome {
 
-    public static final Biome ASH_TROUGH = createBiome();
+    public static final Biome CINDER_PIPES = createBiome();
 
     private static Biome createBiome() {
         Biome.Builder biome = new Biome.Builder();
@@ -25,6 +26,7 @@ public class AshTroughBiome {
         //DefaultBiomeFeatures.addLandCarvers(generation);
 
         generation.carver(GenerationStep.Carver.AIR, JourneysEndCarvers.ASH_TROUGH_CARVER);
+        generation.feature(GenerationStep.Feature.UNDERGROUND_ORES, JourneysEndFeatures.DARK_ASH_FLOOR.getFeature());
 
         DefaultBiomeFeatures.addBatsAndMonsters(spawns);
 

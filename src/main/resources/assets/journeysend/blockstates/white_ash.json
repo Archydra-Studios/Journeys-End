@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "journeysend:block/white_ash"
+      },
+      {
+        "model": "journeysend:block/white_ash",
+        "y": 90
+      },
+      {
+        "model": "journeysend:block/white_ash",
+        "y": 180
+      },
+      {
+        "model": "journeysend:block/white_ash",
+        "y": 270
+      }
+    ]
+  }
+}

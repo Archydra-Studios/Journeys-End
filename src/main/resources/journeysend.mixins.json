@@ -4,6 +4,7 @@
   "package": "azzy.fabric.journeysend.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "FallingBlockDestroyAccessor"
   ],
   "client": [
   ],

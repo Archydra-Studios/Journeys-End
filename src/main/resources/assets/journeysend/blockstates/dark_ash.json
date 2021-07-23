@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "journeysend:block/dark_ash"
+      },
+      {
+        "model": "journeysend:block/dark_ash",
+        "y": 90
+      },
+      {
+        "model": "journeysend:block/dark_ash",
+        "y": 180
+      },
+      {
+        "model": "journeysend:block/dark_ash",
+        "y": 270
+      }
+    ]
+  }
+}

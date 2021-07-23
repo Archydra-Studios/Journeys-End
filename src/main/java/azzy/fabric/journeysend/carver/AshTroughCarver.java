@@ -33,6 +33,15 @@ public class AshTroughCarver extends Carver<class_6108> {
         double y = config.field_31488.method_35391(random, context);
         double z = pos.getOffsetZ(16);
 
+        double rounding = random.nextDouble() * -2;
+        SkipPredicate skipPredicate = (contextSkip, scaledRelativeX, scaledRelativeY, scaledRelativeZ, ySkip) -> {
+            if (scaledRelativeY <= rounding) {
+                return true;
+            } else {
+                return scaledRelativeX * scaledRelativeX + scaledRelativeY * scaledRelativeY + scaledRelativeZ * scaledRelativeZ >= 1.0D;
+            }
+        };
+
         int branchCount = (4 * 2 - 1) * 24; // The maximum size of a cave tunnel system, 112 by default
 
         // The amount of cave systems to generate in total, uses 3 randoms to bias the count downwards.
@@ -76,14 +85,14 @@ public class AshTroughCarver extends Carver<class_6108> {
                 int maxBranches = branchCount - random.nextInt(branchCount / 4);
 
                 // Start the recursive tunnel carving
-               this.carveTunnels(context, config, chunk, posToBiome, carvingMask, random.nextLong(), seaLevel, mainChunkX, mainChunkZ, x, y, z, width, yaw, pitch, 0, maxBranches);
+               this.carveTunnels(context, config, chunk, posToBiome, carvingMask, random.nextLong(), seaLevel, mainChunkX, mainChunkZ, x, y, z, width, yaw, pitch, 0, maxBranches, skipPredicate);
                 //carveRegion(context, config, chunk, posToBiome, random.nextLong(), seaLevel, x, y, z, 2, 0.5, carvingMask, ((context1, scaledRelativeX, scaledRelativeY, scaledRelativeZ, y1) -> false));
             }
         }
         return true;
     }
 
-    protected void carveTunnels(CarverContext context, class_6108 config, Chunk chunk, Function<BlockPos, Biome> posToBiome, BitSet carvingMask, long seed, int seaLevel, int mainChunkX, int mainChunkZ, double x, double y, double z, float width, float yaw, float pitch, int branchStartIndex, int branchCount) {
+    protected void carveTunnels(CarverContext context, class_6108 config, Chunk chunk, Function<BlockPos, Biome> posToBiome, BitSet carvingMask, long seed, int seaLevel, int mainChunkX, int mainChunkZ, double x, double y, double z, float width, float yaw, float pitch, int branchStartIndex, int branchCount, SkipPredicate predicate) {
         // Get the position for starting the next branch, from 25% of the total length to 75% to ensure it doesn't branch near the ends
 
         Random random = new Random(seed);
@@ -128,15 +137,15 @@ public class AshTroughCarver extends Carver<class_6108> {
             if (i == nextBranch && width > 1.0F) {
                 // Change the yaw by pi/2 with different sign for both tunnels, to split them off at a fork and make them go opposite ways.
                 // Reduce the pitch by a factor of 3 to flatten out cave tunnel forks.
-                this.carveTunnels(context, config, chunk, posToBiome, carvingMask, random.nextLong(), seaLevel, mainChunkX, mainChunkZ, x, y, z, random.nextFloat() + random.nextInt(3), yaw - 1.5707964F, pitch / 3.0F, i, branchCount);
-                this.carveTunnels(context, config, chunk, posToBiome, carvingMask, random.nextLong(), seaLevel, mainChunkX, mainChunkZ, x, y, z, random.nextFloat() + random.nextInt(3), yaw + 1.5707964F, pitch / 3.0F, i, branchCount);
+                this.carveTunnels(context, config, chunk, posToBiome, carvingMask, random.nextLong(), seaLevel, mainChunkX, mainChunkZ, x, y, z, random.nextFloat() + random.nextInt(3), yaw - 1.5707964F, pitch / 2.334F, i, branchCount, predicate);
+                this.carveTunnels(context, config, chunk, posToBiome, carvingMask, random.nextLong(), seaLevel, mainChunkX, mainChunkZ, x, y, z, random.nextFloat() + random.nextInt(3), yaw + 1.5707964F, pitch / 2.334F, i, branchCount, predicate);
                 return;
             }
 
             // 25% of generation is skipped for a more random feeling
             if (random.nextInt(4) != 0) {
                 // Carve the region at this position
-                carveRegion(context, config, chunk, posToBiome, random.nextLong(), seaLevel, x, y, z, scaledYaw, scaledPitch, carvingMask, ((context1, scaledRelativeX, scaledRelativeY, scaledRelativeZ, y1) -> false));
+                carveRegion(context, config, chunk, posToBiome, random.nextLong(), seaLevel, x, y, z, scaledYaw, scaledPitch * 1.25, carvingMask, predicate);
             }
         }
     }
